@@ -103,12 +103,14 @@ const languageRequest = () => {
 const submitLanguage = () => {
   const submitBtn = $('#submit-btn');
   const input = $('#lang-req')[0];
+  const langForm = $('.lang-form');
 
   if (input.value.length > 0) {
     // If user input present, adjust UI and add event to submit data on click to amplitude
     submitBtn.css({ opacity: '100%', cursor: 'pointer' });
     submitBtn.on('click', () => {
       clearInterval(checkInput);
+      langForm.css('pointer-events', 'none');
       window.AnalyticsClient.trackAction('New Language Request', {
         requestedLanguage: input.value,
         browserNativeLang: window.navigator.language,
